@@ -17,3 +17,14 @@ platforms = ["win-64"]
 ecfr = { path = ".", editable = true }
 
 [tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+python = ">=3.13.3,<3.14"
+fastapi = ">=0.115.12,<0.116"
+uvicorn = ">=0.34.2,<0.35"
+aiohttp = ">=3.11.18,<4"
+lxml = ">=5.4.0,<6"
+pydantic = ">=2.11.4,<3"
+pandas = ">=2.2.3,<3"
+textstat = ">=0.7.7,<0.8"
+streamlit = ">=1.45.0,<2"
