@@ -1,13 +1,15 @@
-# api.py
 from fastapi import FastAPI
-import json, pandas as pd, hashlib, datetime as dt
+from pathlib import Path
+import json, pandas as pd
 from metrics import today_metrics
 
 app = FastAPI(title="eCFR‑micro")
+SNAP_PATH = Path("data/snapshot.json")
+SNAP      = json.loads(SNAP_PATH.read_text()) if SNAP_PATH.exists() else {}
 
 @app.get("/agencies")
-def list_agencies():
-    return list(json.loads(Path("data/snapshot.json").read_text()).keys())
+def agencies():
+    return list(SNAP.keys())
 
 @app.get("/metrics")
 def metrics():
@@ -15,5 +17,4 @@ def metrics():
 
 @app.get("/checksum/{agency}")
 def checksum(agency: str):
-    snap = json.loads(Path("data/snapshot.json").read_text())
-    return {"agency": agency, "checksum": snap[agency]["checksum"]}
+    return {"agency": agency, "checksum": SNAP.get(agency, {}).get("checksum", None)}

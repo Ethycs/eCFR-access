@@ -17,6 +17,10 @@ platforms = ["win-64"]
 ecfr = { path = ".", editable = true }
 
 [tool.pixi.tasks]
+ingest = "python ingest_api.py"
+api = "uvicorn api:app --reload"
+ui = "streamlit run ui.py"
+all = [{task = "ingest"}, {task = "api"}, {task = "ui"}]
 
 [tool.pixi.dependencies]
 python = ">=3.13.3,<3.14"
@@ -28,3 +32,6 @@ pydantic = ">=2.11.4,<3"
 pandas = ">=2.2.3,<3"
 textstat = ">=0.7.7,<0.8"
 streamlit = ">=1.45.0,<2"
+requests = ">=2.32.3,<3"
+altair = ">=5.5.0,<6"
+
