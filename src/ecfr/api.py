@@ -1,15 +1,16 @@
 from fastapi import FastAPI
 from pathlib import Path
-import json, pandas as pd
-from metrics import today_metrics
+import json
+from ecfr.metrics import today_metrics
+
+SNAP_PATH = Path(__file__).resolve().parents[2] / "data" / "snapshot.json"
+SNAP      = json.loads(SNAP_PATH.read_text()) if SNAP_PATH.exists() else {}
 
 app = FastAPI(title="eCFR‑micro")
-SNAP_PATH = Path("data/snapshot.json")
-SNAP      = json.loads(SNAP_PATH.read_text()) if SNAP_PATH.exists() else {}
 
 @app.get("/agencies")
 def agencies():
-    return list(SNAP.keys())
+    return list(SNAP)
 
 @app.get("/metrics")
 def metrics():
@@ -17,4 +18,4 @@ def metrics():
 
 @app.get("/checksum/{agency}")
 def checksum(agency: str):
-    return {"agency": agency, "checksum": SNAP.get(agency, {}).get("checksum", None)}
+    return {"agency": agency, "checksum": SNAP.get(agency, {}).get("checksum")}

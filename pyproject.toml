@@ -17,9 +17,9 @@ platforms = ["win-64"]
 ecfr = { path = ".", editable = true }
 
 [tool.pixi.tasks]
-ingest = "python ingest_api.py"
-api = "uvicorn api:app --reload"
-ui = "streamlit run ui.py"
+ingest = "python src\\ecfr\\ingest_api.py"
+api = "uvicorn ecfr.api:app --reload"
+ui = "streamlit run src/ecfr/ui.py"
 all = [{task = "ingest"}, {task = "api"}, {task = "ui"}]
 
 [tool.pixi.dependencies]

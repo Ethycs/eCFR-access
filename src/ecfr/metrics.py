@@ -4,6 +4,7 @@ from datetime import date, timedelta
 from pathlib import Path
 import pandas as pd, textstat, aiohttp, asyncio
 from lxml import etree
+import re
 
 SNAP_PATH = Path("data/snapshot.json")
 SNAP      = json.loads(SNAP_PATH.read_text()) if SNAP_PATH.exists() else {}
