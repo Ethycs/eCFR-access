@@ -709,7 +709,7 @@ packages:
 - pypi: .
   name: ecfr
   version: 0.1.0
-  sha256: 992694584c8a4634bfe7c685fa04fcb0c58cfd3d65542248b1adfb8e48ab5752
+  sha256: 2d6f3bd35ab040b6fa9f463237927e2e1e25a9d8337b64928b1427361f43263d
   requires_python: '>=3.11'
   editable: true
 - conda: https://conda.anaconda.org/conda-forge/noarch/email-validator-2.2.0-pyhd8ed1ab_1.conda
